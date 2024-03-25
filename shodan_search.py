@@ -1,9 +1,19 @@
 import requests
 import urllib
 import http.client
+import shodan
 
 shodan_api_key = input("enter the api that you get from shodan : ")
 ip = input("enter the ip to scan : ")
+
+def shodan_info_shodan():
+    shdo = shodan.Shodan(shodan_api_key)
+    try:
+        result = shdo.search("nginx")
+    except:
+        result = {"errro": "information error"}
+    return result
+
 def shodan_info_alt(ip):
 	try:
 		connection = http.client.HTTPConnection("api.shodan.io")
